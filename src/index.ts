@@ -61,9 +61,10 @@ function parseSSPM(filePath: any) {
 const {SSPMResult} = parseSSPM(filePath)
 
 const [SSPMArtist, SSPMTitle] = SSPMResult.mapName.split(' - ')
-let SSPMDifficulty: string = SSPMResult.customData ? // check if customData exists
-                            SSPMResult.customData[0].customDataObject : // if so, assign to customData[0].customDataObject
-                            Difficulties[SSPMResult.difficulty] // if not, assign to the difficulty enum list that i made
+// let SSPMDifficulty: string = SSPMResult.customDataObject ? SSPMResult.customDataObject[0].customData.longUTF8String : Difficulties[SSPMResult.difficulty];
+let SSPMDifficulty: string = SSPMResult.customDataArrayLength > 0 ? SSPMResult.customDataObject[0].customData.longUTF8String : Difficulties[SSPMResult.difficulty];
+
+console.log(SSPMResult.customDataArrayLength)
 
 let SSPMMappers: string[] = [];
 let notes: rhymNote[] = []
