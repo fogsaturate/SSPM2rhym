@@ -1,0 +1,19 @@
+{
+  "name": "typescript-bullshittery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "binary-parser": "^2.2.1",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/buffer-reader": "^0.1.3",
+    "typescript": "^5.7.2"
+  }
+}
