@@ -5,7 +5,7 @@ import { Difficulties } from './dataTypes';
 import { SSPMParser } from './sspmParser';
 import path from 'path';
 
-const filePath = path.join(__dirname, '../src/input/mustfollowyou_goreshit_-_burn_this_moment_into_the_retina_of_my_eye.sspm');
+const filePath = path.join(__dirname, '../src/input/xr_attractor_dimension.sspm');
 
 function outputPath(outputFilename: string): string {
     const outputFolder = path.join(__dirname, '../src/output')

@@ -8,7 +8,7 @@ const binary_parser_1 = require("binary-parser");
 const dataTypes_1 = require("./dataTypes");
 const sspmParser_1 = require("./sspmParser");
 const path_1 = __importDefault(require("path"));
-const filePath = path_1.default.join(__dirname, '../src/input/mustfollowyou_goreshit_-_burn_this_moment_into_the_retina_of_my_eye.sspm');
+const filePath = path_1.default.join(__dirname, '../src/input/xr_attractor_dimension.sspm');
 function outputPath(outputFilename) {
     const outputFolder = path_1.default.join(__dirname, '../src/output');
     return path_1.default.join(outputFolder, outputFilename);
