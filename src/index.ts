@@ -1,4 +1,5 @@
 import fs from 'fs';
+import archiver from 'archiver';
 import { Parser } from 'binary-parser';
 import { rhymGlobalMetadata , rhymDifficultyMetadata, rhymObjectData, rhymNote } from './rhymInterface';
 import { Difficulties } from './dataTypes';
@@ -129,11 +130,20 @@ fs.writeFileSync(outputDifficultyMetadatatoFolder, difficultyMetadata, 'utf-8');
 fs.writeFileSync(outputobjectDatatoFolder, objectData, 'utf-8');
 
 
+// export to .rhym
 
-// console.log(JSON.stringify(SSPM2rhymGlobalMetadata))
 
-// const testJSON = JSON.stringify(SSPM, bigIntReplacer, 2);
-// const outputFiletoFolder = outputPath('SSPMv2Compiled.json')
-// fs.writeFileSync(outputFiletoFolder, testJSON, 'utf-8');
+function rhymFileName(arr: string[], str2: string, str3: string): string {
+    const combinedMetadata = [SSPMMappers, SSPMArtist, SSPMTitle].join(" "); // Combine all into one string with spaces
+    return combinedMetadata.replace(/ /g, "_");              // Replace all spaces with underscores
+}
 
-// console.log(JSON.stringify(test));
+
+const output = fs.createWriteStream('./src/' + rhymFileName(SSPMMappers, SSPMArtist, SSPMTitle) + '.rhym');
+const archive = archiver('zip');
+
+archive.pipe(output)
+
+archive.directory('./src/output', false);
+
+archive.finalize();

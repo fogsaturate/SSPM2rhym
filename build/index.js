@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
+const archiver_1 = __importDefault(require("archiver"));
 const binary_parser_1 = require("binary-parser");
 const dataTypes_1 = require("./dataTypes");
 const sspmParser_1 = require("./sspmParser");
@@ -103,9 +104,14 @@ var difficultydirPath = './src/output/' + SSPMDifficulty;
 fs_1.default.mkdirSync(difficultydirPath, { recursive: true });
 fs_1.default.writeFileSync(outputDifficultyMetadatatoFolder, difficultyMetadata, 'utf-8');
 fs_1.default.writeFileSync(outputobjectDatatoFolder, objectData, 'utf-8');
-// console.log(JSON.stringify(SSPM2rhymGlobalMetadata))
-// const testJSON = JSON.stringify(SSPM, bigIntReplacer, 2);
-// const outputFiletoFolder = outputPath('SSPMv2Compiled.json')
-// fs.writeFileSync(outputFiletoFolder, testJSON, 'utf-8');
-// console.log(JSON.stringify(test));
+// export to .rhym
+function rhymFileName(arr, str2, str3) {
+    const combinedMetadata = [SSPMMappers, SSPMArtist, SSPMTitle].join(" "); // Combine all into one string with spaces
+    return combinedMetadata.replace(/ /g, "_"); // Replace all spaces with underscores
+}
+const output = fs_1.default.createWriteStream('./src/' + rhymFileName(SSPMMappers, SSPMArtist, SSPMTitle) + '.rhym');
+const archive = (0, archiver_1.default)('zip');
+archive.pipe(output);
+archive.directory('./src/output', false);
+archive.finalize();
 //# sourceMappingURL=index.js.map
